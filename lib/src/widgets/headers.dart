@@ -263,7 +263,11 @@ class _HeaderWavePainter extends CustomPainter {
 }
 
 class HeaderGradient extends StatelessWidget {
-  const HeaderGradient({Key? key}) : super(key: key);
+  final Color color;
+  const HeaderGradient({
+    Key? key,
+    required this.color,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -271,13 +275,15 @@ class HeaderGradient extends StatelessWidget {
       height: double.infinity,
       width: double.infinity,
       child: CustomPaint(
-        painter: _HeaderGradientPainter(),
+        painter: _HeaderGradientPainter(color),
       ),
     );
   }
 }
 
 class _HeaderGradientPainter extends CustomPainter {
+  final Color color;
+  _HeaderGradientPainter(this.color);
   @override
   void paint(Canvas canvas, Size size) {
     final Rect rect = Rect.fromCircle(
@@ -285,24 +291,27 @@ class _HeaderGradientPainter extends CustomPainter {
       radius: 180,
     );
 
-    const Gradient gradiente = LinearGradient(
-        begin: Alignment.topCenter,
-        end: Alignment.bottomCenter,
-        colors: <Color>[
-          Color(0xff6D05E8),
-          Color(0xffC012FF),
-          Color(0xff6D05FA),
-        ],
-        stops: [
-          0.0,
-          0.5,
-          1.0,
-        ]);
+    // Gradient gradiente = LinearGradient(
+    //   begin: Alignment.topCenter,
+    //   end: Alignment.bottomCenter,
+    //   // colors: <Color>[
+    //   //   // color,
+    //   //   Color(0xff6D05E8),
+    //   //   Color(0xffC012FF),
+    //   //   Color(0xff6D05FA),
+    //   // ],
+    //   // stops: [
+    //   //   0.0,
+    //   //   0.5,
+    //   //   1.0,
+    //   // ],
+    // );
 
-    final lapiz = Paint()..shader = gradiente.createShader(rect);
+    final lapiz = Paint();
 
     // Propiedades
     // lapiz.style = PaintingStyle.stroke; // .fill .stroke
+    lapiz.color = color;
     lapiz.style = PaintingStyle.fill; // .fill .stroke
     lapiz.strokeWidth = 20.0;
 

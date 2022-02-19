@@ -1,6 +1,8 @@
+import 'package:disenos_app/src/theme/theme.dart';
 import 'package:disenos_app/src/widgets/slideshow.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
 
 class SlideshowPage extends StatelessWidget {
   const SlideshowPage({Key? key}) : super(key: key);
@@ -29,11 +31,14 @@ class MiSlideshow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appTheme = Provider.of<ThemeChanger>(context);
+    final accentrColor = appTheme.currentTheme.colorScheme.secondary;
     return Slideshow(
       bulletPrimario: 20,
       bulletSecundario: 12,
       // puntosArriba: true,
-      colorPrimario: Colors.red,
+      colorPrimario:
+          appTheme.darkTheme ? accentrColor : const Color(0xffFF5A7E),
       // colorSecundario: Colors.black,
       slides: [
         SvgPicture.asset('assets/svgs/slide-1.svg'),

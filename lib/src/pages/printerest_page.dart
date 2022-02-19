@@ -1,3 +1,4 @@
+import 'package:disenos_app/src/theme/theme.dart';
 import 'package:disenos_app/src/widgets/printeres_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
@@ -34,6 +35,7 @@ class _PrinterestMenuLocation extends StatelessWidget {
   Widget build(BuildContext context) {
     final widthPantalla = MediaQuery.of(context).size.width;
     final mostrar = Provider.of<_MenuModel>(context).mostrar;
+    final appTheme = Provider.of<ThemeChanger>(context).currentTheme;
     return Positioned(
       bottom: 30,
       child: Container(
@@ -41,6 +43,8 @@ class _PrinterestMenuLocation extends StatelessWidget {
         child: Align(
           child: PrinterestMenu(
             mostrar: mostrar,
+            backgoundColor: appTheme.scaffoldBackgroundColor,
+            activeColor: appTheme.colorScheme.secondary,
             items: [
               PrinteresButton(
                   onPressed: () {
