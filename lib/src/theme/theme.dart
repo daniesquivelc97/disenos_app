@@ -32,7 +32,11 @@ class ThemeChanger with ChangeNotifier {
       default:
         _darkTheme = false;
         _customTheme = false;
-        _currentTheme = ThemeData.light();
+        _currentTheme = ThemeData.light().copyWith(
+          colorScheme: _currentTheme.colorScheme.copyWith(
+            secondary: Colors.pink,
+          ),
+        );
     }
   }
 
@@ -47,7 +51,11 @@ class ThemeChanger with ChangeNotifier {
         ),
       );
     } else {
-      _currentTheme = ThemeData.light();
+      _currentTheme = ThemeData.light().copyWith(
+        colorScheme: _currentTheme.colorScheme.copyWith(
+          secondary: Colors.pink,
+        ),
+      );
     }
     notifyListeners();
   }
